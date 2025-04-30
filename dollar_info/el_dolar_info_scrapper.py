@@ -2,26 +2,14 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from selenium import webdriver
 import logging
-import environ
 
 class ElDolarInfoScrapper():
     def __init__(self):
-        env = environ.Env()
         options = webdriver.ChromeOptions()
 
-        if (env('HEROKU')):
-            print('Using Heroku buildpack configuration.')
-            logging.info('Using Heroku buildpack configuration.')
-            from webdriver_manager.chrome import ChromeDriverManager
-            options.add_argument("window-size=1920x1480")
-            options.add_argument("disable-dev-shm-usage")
-            self.browser = webdriver.Chrome(
-                chrome_options=options, executable_path=ChromeDriverManager().install()
-            )
-        else:
-            options.add_argument('headless')
-            browser = webdriver.Chrome(chrome_options=options)
-            self.browser = browser
+        options.add_argument('headless')
+        browser = webdriver.Chrome(options=options)
+        self.browser = browser
 
         print('Succesfully initialized scraper.')
         logging.info('Succesfully initialized scraper.')

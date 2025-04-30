@@ -49,7 +49,7 @@ def history():
 
     for h in scrapper.scrap_history():
         entry = Entry(date=h['date'], buy_price=h['buy_price'], sell_price=h['sell_price'])
-        entry.save(entry)
+        entry.save()
         logging.info('Saved entry with id {0} ({1})'.format(entry.id, str(entry)))
         print('Saved entry with id {0} ({1})'.format(entry.id, str(entry)))
     

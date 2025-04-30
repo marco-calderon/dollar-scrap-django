@@ -1,0 +1,22 @@
+databases:
+  - name: dollardb
+    plan: free
+    databaseName: dollar
+    user: dollar_user
+
+services:
+  - type: web
+    plan: free
+    name: dollar_charts
+    runtime: python
+    buildCommand: './build.sh'
+    startCommand: 'python -m gunicorn dollar_charts.asgi:application -k uvicorn.workers.UvicornWorker' 
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: dollardb
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4

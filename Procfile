@@ -1,1 +1,0 @@
-web: gunicorn dollar_charts.wsgi
