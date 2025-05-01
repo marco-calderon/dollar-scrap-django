@@ -36,6 +36,7 @@ ALLOWED_HOSTS = [
     'http://localhost',
     'capacitor://localhost',
     'ionic://localhost',
+    'dollar-scrap-django.fly.dev'
 ]
 
 
